@@ -1,8 +1,11 @@
+//Code written by: Rohan Chandra R
+//Date: 20/10/2023
+//Description: This project was done as part of recruitment process of GDSC NITK.In this project, my backend will make
+// a request to GitHub GraphQL API to fetch the user's profile data and display it on the frontend.
 
-
-const express = require('express');
-const axios = require('axios');
-const bodyParser = require('body-parser');
+const express = require('express'); //  'express' module to create a web server
+const axios = require('axios');  //axios module to make HTTP requests
+const bodyParser = require('body-parser'); // Import the 'body-parser' module to get user input data from form
 const path = require('path'); // Import the 'path' module for file paths
 const ejs = require('ejs'); // Import EJS templating engine
 
@@ -16,34 +19,38 @@ app.use(express.static(path.join(__dirname, 'public'))); // Set the static asset
 
 // Set the view engine to EJS
 app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views')); // Assuming your EJS template is in a 'views' folder
+app.set('views', path.join(__dirname, 'views')); // I follow this setup of 'views' folder for EJS templates
 
-// Replace 'YOUR_GITHUB_ACCESS_TOKEN' with your GitHub personal access token
+// This is my personal access token to authenticate with github graphql api
 const accessToken = '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';
 
-// Define the GitHub GraphQL API endpoint
+// GitHub GraphQL API endpoint
 const apiUrl = 'https://api.github.com/graphql';
 
 app.get("/", (req, res) => {
-    res.render('index'); // Assuming your EJS template is named 'index.ejs'
+    res.render('index'); // to render EJS template named as 'index.ejs'
 });
 
 app.post('/', async (req, res) => {
     // Get the GraphQL query from the request body
-    var userName = req.body.userKaName;
-    console.log(userName);
+    var userName = req.body.userKaName; //input of username from ejs template
+    console.log(userName); //checking whether i received username from template or not
+    // I want to make a function call to my fetchData function here
     try {
         const dataFeed = await fetchData(apiUrl, accessToken, userName);
-         console.log(dataFeed);
-         console.log(dataFeed.user.contributionsCollection.contributionCalendar);
-        res.render('index', { data : dataFeed });
+         console.log(dataFeed);  //to check whether i received data from github api or not
+        res.render('index', { data : dataFeed }); //passing the data to ejs template to display
     } catch (error) {
         console.error('Error:', error);
         res.status(500).send('Internal Server Error');
     }
 });
 
+
+// I used this seperate function to fetch data from github grphql api since it was returning an error when 
+// query was written in post request. I tried to solve it but couldn't so i used this function to fetch data
 async function fetchData(apiUrl, accessToken, userName) {
+    // this is Graphql query obtained with help of github api explorer, github documentation and stackoverflow
     const query = `
     query {
       user(login: "${userName}") {
@@ -65,7 +72,7 @@ async function fetchData(apiUrl, accessToken, userName) {
       }
     }
     `;
-
+    //using axios to send my query to github graphql api
     try {
         const response = await axios.post(apiUrl, { query }, {
             headers: {

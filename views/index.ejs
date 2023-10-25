@@ -4,13 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Github API request</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css">  <!-- incluing css file from public folder with help express static files -->
   </head>
   <body>
     <div class="search">
-    <form action="/" method="POST">
+    <form action="/" method="POST"> <!-- form for taking input from user -->
       <div class="image">
-        <img src="iconmonstr-github-1.svg" alt="image loading...">
+        <img src="iconmonstr-github-1.svg" alt="image loading..."> <!-- image for github -->
       </div>
       <div>
       <label for="userKaName">Enter username:</label>
@@ -22,13 +22,13 @@
     </form>
     </div>
     <div class="display">
-    <% if (locals.data) {%>
+    <% if (locals.data) {%>  <!-- EJS code to check whether data has got response-->
       <div class="result">
-    <h2>Username : <%= data.user.login %></h2>
+    <h2>Username : <%= data.user.login %></h2>   <!-- if true, details of user will be shown-->
     <h2>avatarUrl: <%= data.user.avatarUrl %></h2>
-    </div>
+    </div>   <!-- for loop to show recent repos of user-->
     <% var repos = data.user.repositories.nodes %> <% for (var i = 0; i <
-    repos.length; i++) { %>
+    repos.length; i++) { %>   
       <div class="result">
     <h2>Repository name: <%= repos[i].name %></h2>
     <h2>Repository description: <%= repos[i].description %></h2>
@@ -38,7 +38,7 @@
     <h2>Total Contributions: <%= data.user.contributionsCollection.contributionCalendar.totalContributions %></h2>
     </div>
      <% } else{%>
-    <h1>Get the data by giving github id</h1>
+    <h1>Get the data by giving github id</h1> 
     <% } %>
   </body>
 </html>
