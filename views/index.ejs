@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Github API request</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div class="search">
+    <form action="/" method="POST">
+      <div class="image">
+        <img src="iconmonstr-github-1.svg" alt="image loading...">
+      </div>
+      <div>
+      <label for="userKaName">Enter username:</label>
+      </div>
+      <div>
+      <input name="userKaName" type="text" />
+      </div>
+      <button type="submit" method="post">Get it</button>
+    </form>
+    </div>
+    <div class="display">
+    <% if (locals.data) {%>
+      <div class="result">
+    <h2>Username : <%= data.user.login %></h2>
+    <h2>avatarUrl: <%= data.user.avatarUrl %></h2>
+    </div>
+    <% var repos = data.user.repositories.nodes %> <% for (var i = 0; i <
+    repos.length; i++) { %>
+      <div class="result">
+    <h2>Repository name: <%= repos[i].name %></h2>
+    <h2>Repository description: <%= repos[i].description %></h2>
+    </div>
+    <% } %>
+    <div class="result">
+    <h2>Total Contributions: <%= data.user.contributionsCollection.contributionCalendar.totalContributions %></h2>
+    </div>
+     <% } else{%>
+    <h1>Get the data by giving github id</h1>
+    <% } %>
+  </body>
+</html>

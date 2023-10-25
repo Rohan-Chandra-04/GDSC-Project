@@ -1,0 +1,77 @@
+body {
+    background-color: #d0bdf4; /* Light gray background */
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    align-items: center;
+    justify-content: center;
+    height: 115vh;
+    margin: 20px;
+
+}
+
+.container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.search {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.image img {
+    width: 100px;
+    height: 100px;
+    display: block;
+    margin: 0 auto;
+}
+
+label {
+    font-weight: bold;
+    color: #333333; /* Dark gray text */
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    background-color: #8458B3; /* GitHub Blue */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #ad86f6; /* Slightly darker blue on hover */
+}
+
+.display {
+    text-align: left;
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+}
+
+h2 {
+    color: whitesmoke; /* Dark gray text */
+    margin-top: 10px;
+}
+
+.result {
+    border: 2px solid #333; /* Border color and thickness */
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Box shadow for depth */
+    background-color: #8458B3; /* Background color for the box */
+    color:aliceblue;
+  }
