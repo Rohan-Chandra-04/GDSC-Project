@@ -8,6 +8,8 @@ const axios = require('axios');  //axios module to make HTTP requests
 const bodyParser = require('body-parser'); // Import the 'body-parser' module to get user input data from form
 const path = require('path'); // Import the 'path' module for file paths
 const ejs = require('ejs'); // Import EJS templating engine
+const dotenv = require('dotenv'); // Import the 'dotenv' module to load environment variables from .env file
+dotenv.config(); // Load environment variables from .env file into process.env
 
 const app = express();
 const port = 3000;
@@ -22,7 +24,7 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views')); // I follow this setup of 'views' folder for EJS templates
 
 // This is my personal access token to authenticate with github graphql api
-const accessToken = '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';
+const accessToken = process.env.GITHUB_TOKEN;
 
 // GitHub GraphQL API endpoint
 const apiUrl = 'https://api.github.com/graphql';
