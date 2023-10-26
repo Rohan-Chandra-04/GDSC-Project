@@ -22,7 +22,7 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views')); // I follow this setup of 'views' folder for EJS templates
 
 // This is my personal access token to authenticate with github graphql api
-const accessToken = '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';
+const accessToken = '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';
 
 // GitHub GraphQL API endpoint
 const apiUrl = 'https://api.github.com/graphql';
